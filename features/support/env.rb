@@ -29,6 +29,7 @@ Capybara.default_driver = :selenium
 # ========================= SCENARIO TEARDOWN ========================#
 
 Before do |scenario|
+  @pages = Pages.new
   Capybara.current_session.driver.execute_script("window.resizeTo(1920,1080)")
   Capybara.ignore_hidden_elements = false
   Capybara.default_max_wait_time = 30
