@@ -15,7 +15,8 @@ class HomePage < BasePage
     @input_singup_project_name = Element.new(:css, "#signup [name='project_name']")
     @input_singin_name = Element.new(:css, "#login [name='login']")
     @input_singin_password = Element.new(:css, "#login [name='password']")
-    @text_signin_error_text = Element.new(:css, "[action='/login'] .alert-danger .errorText")
+    # @text_signin_error_text = Element.new(:css, "[action='/login'] .alert-danger .errorText")
+    @text_signin_error_text = Element.new(:xpath, "//span[contains(text(), 'is not correct')]")
   end
 
   def isVisible
@@ -76,11 +77,12 @@ class HomePage < BasePage
   end
 
   def invalidCredentialsOnLoginError
-    unless @text_signin_error_text.visible? # Refactor to expect(page).to have_selector('#blah', visible: true) or other way of finding error message, maybe by text & xpath?
-      raise "Error text about incorect login not visible"
-    end
-    unless @text_signin_error_text.text.include? "not correct"
-      raise "Error message is not correct, does not have name 'invalid'"
-    end
+    # unless @text_signin_error_text.visible? # Refactor to expect(page).to have_selector('#blah', visible: true) or other way of finding error message, maybe by text & xpath?
+    #   raise "Error text about incorect login not visible"
+    # end
+    # unless @text_signin_error_text.text.include? "not correct"
+    #   raise "Error message is not correct, does not have name 'invalid'"
+    # end
+    @text_signin_error_text.isVisible
   end
 end
