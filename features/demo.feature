@@ -11,14 +11,9 @@ Feature: Demo Feature
 
     Scenario: Fill Sign Up page
         Given I am on Appimation home page
-        When I open Sign Up
-        Then I enter unique Sign Up email address
-        Then I enter "TestPassword" as password "Test Project" as project in Sign Up form
-        Then I close Sign Up
+        Then I validate Sign Up page
         
     Scenario: Log in attempt (negative)
         Given I am on Appimation home page
         When I open Sign In
-        Then I use "email@lolmail.com" as email and "fakePassword1" as password to log in
-        When I select LOGIN button
-        Then I receive error message about invalid credentials
+        Then I submit invalid sign in credentials

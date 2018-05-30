@@ -30,6 +30,7 @@ Capybara.default_driver = :selenium
 
 Before do |scenario|
   @pages = Pages.new
+  @tests = Tests.new(@pages)
   Capybara.current_session.driver.execute_script("window.resizeTo(1920,1080)")
   Capybara.ignore_hidden_elements = false
   Capybara.default_max_wait_time = 30

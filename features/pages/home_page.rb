@@ -34,16 +34,16 @@ class HomePage < BasePage
     @form_signup.isVisible
   end
 
-  def enterSignupEmail
+  def enterSignupEmail(email)
     @input_singup_email.isVisible
-    @input_singup_email.send_keys(Time.now.strftime("%Y%m%d%H%M%s")+"@yopmail.com")
+    @input_singup_email.send_keys(email)
   end
 
-  def fillSignupPasswordFields(password)
+  def fillSignupPasswordFields(password,passwordAgain)
     if (@input_singup_password1.visible? &&
       @input_singup_password2.visible?)
       @input_singup_password1.send_keys(password)
-      @input_singup_password2.send_keys(password)
+      @input_singup_password2.send_keys(passwordAgain)
     else
       raise "Signup password fields are not visible"
     end
@@ -58,31 +58,28 @@ class HomePage < BasePage
     @button_signup_close.click
   end
 
-  def openSignIn
+  def open_sign_in
     @button_signin.click
     @form_signin.isVisible
   end
 
-  def fillInvalidSignInCredentials(login,password)
+  def fill_sign_in_login(login)
     @input_singin_name.isVisible
-    @input_singin_password.isVisible
     @input_singin_name.send_keys(login)
+  end
+
+  def fill_sing_in_password(password)
+    @input_singin_password.isVisible
     @input_singin_password.send_keys(password)
   end
 
-  def selectSignInFormLogInButton
+  def select_sign_in_form_log_in_button
     @button_signin_login.isVisible
     @button_signin_login.click
     # sleep(1)
   end
 
-  def invalidCredentialsOnLoginError
-    # unless @text_signin_error_text.visible? # Refactor to expect(page).to have_selector('#blah', visible: true) or other way of finding error message, maybe by text & xpath?
-    #   raise "Error text about incorect login not visible"
-    # end
-    # unless @text_signin_error_text.text.include? "not correct"
-    #   raise "Error message is not correct, does not have name 'invalid'"
-    # end
+  def invalid_credentials_on_login_error
     @text_signin_error_text.isVisible
   end
 end
