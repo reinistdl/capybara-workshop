@@ -15,5 +15,4 @@ Feature: Demo Feature
         
     Scenario: Log in attempt (negative)
         Given I am on Appimation home page
-        When I open Sign In
         Then I submit invalid sign in credentials
